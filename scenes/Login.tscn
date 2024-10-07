@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rr3808vus5ow"]
 
-[ext_resource type="Script" path="res://scripts/Auth.cs" id="1_84wuo"]
+[ext_resource type="Script" path="res://scripts/Auth.gd" id="1_5vupe"]
 
 [node name="Login" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_84wuo")
+script = ExtResource("1_5vupe")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -42,6 +42,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme_override_font_sizes/font_size = 40
+text = "std1@example.com"
 
 [node name="label_pass" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -52,6 +53,8 @@ text = "Contraseña"
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 40
+text = "admin222"
 secret = true
 
 [node name="tbnIniciarSesion" type="Button" parent="VBoxContainer"]
