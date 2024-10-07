@@ -36,4 +36,7 @@ text = "HADEADEADSADSA"
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="UploadResult" type="HTTPRequest" parent="."]
+
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="UploadResult" to="." method="_on_upload_result_request_completed"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://dll48qfqiyc5u"]
+
+[ext_resource type="Script" path="res://scripts/Decision.gd" id="2_7py6h"]
+
+[node name="Background" type="PanelContainer"]
+offset_right = 530.0
+offset_bottom = 546.0
+script = ExtResource("2_7py6h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="CharacterName" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Jack"
+
+[node name="Character" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch_mode = 4
+
+[node name="Decision1" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 35
+text = "daedadea"
+
+[node name="Decision2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 35
+text = "daedadea"
+
+[node name="Transcript" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "dadadadadad"
+
+[node name="BtnOk" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Aceptar
+"
+
+[node name="BtnBorrar" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Grabar"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="VBoxContainer/BtnOk" to="." method="_on_btn_ok_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnBorrar" to="." method="_on_btn_borrar_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
