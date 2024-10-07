@@ -28,3 +28,5 @@ theme_override_font_sizes/font_size = 35
 text = "daedadea"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
