@@ -12,16 +12,12 @@ config_version=5
 
 config/name="Serious Game Godot"
 run/main_scene="res://scenes/Login.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
-
-[audio]
-
-driver/enable_input=true
 
 [autoload]
 
-Variables="*res://scripts/Variables.gd"
+Variables="*res://scripts/Variables.cs"
 
 [display]
 
@@ -35,11 +31,6 @@ window/handheld/orientation=1
 
 project/assembly_name="Game Dyslexia"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/godot_whisper/plugin.cfg")
-
 [rendering]
 
 renderer/rendering_method="mobile"
-textures/vram_compression/import_etc2_astc=true
