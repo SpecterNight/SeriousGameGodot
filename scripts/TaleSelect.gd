@@ -48,4 +48,4 @@ func _on_panel_pressed(tale_id):
 
 func to_scene_activities(tale_id):
 	variables.tale_id = tale_id
-	get_tree().change_scene("res://scenes/Tale.tscn")
+	get_tree().change_scene_to_file("res://scenes/Tale.tscn")

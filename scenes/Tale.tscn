@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://3rdjvm5d8yo"]
+
+[ext_resource type="Script" path="res://scripts/Tale.gd" id="1_6sawv"]
+
+[node name="Tale" type="Node2D"]
+script = ExtResource("1_6sawv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 43.0
+offset_top = 148.0
+offset_right = 674.0
+offset_bottom = 1123.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+clip_contents = false
+layout_mode = 2
+
+[node name="DialogueVB" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="."]
+offset_left = 33.0
+offset_top = 37.0
+offset_right = 686.0
+offset_bottom = 136.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 45
+text = "HADEADEADSADSA"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

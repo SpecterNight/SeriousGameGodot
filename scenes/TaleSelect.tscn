@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccvu50oiqww0d"]
+[gd_scene load_steps=2 format=3 uid="uid://bkerhocggy3uo"]
 
-[ext_resource type="Script" path="res://scripts/CategorySelect.cs" id="1_t054x"]
+[ext_resource type="Script" path="res://scripts/TaleSelect.gd" id="1_qkt64"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -9,9 +9,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_t054x")
+script = ExtResource("1_qkt64")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 145.0
+offset_top = 50.0
+offset_right = 583.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 45
+text = "Cuentos disponibles"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -20,27 +29,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -450.0
-offset_top = -200.0
-offset_right = 450.0
-offset_bottom = 200.0
+offset_left = -308.0
+offset_top = -469.0
+offset_right = 308.0
+offset_bottom = 526.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Categories" type="HBoxContainer" parent="ScrollContainer"]
+[node name="Tales" type="HBoxContainer" parent="ScrollContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="btnBack" type="Button" parent="."]
-layout_mode = 1
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 117.0
-offset_bottom = 71.0
-text = "Regresar
-"
-
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
-[connection signal="pressed" from="btnBack" to="." method="_on_btn_back_pressed"]
