@@ -50,6 +50,9 @@ text = "Grabar"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="pressed" from="VBoxContainer/BtnOk" to="." method="_on_btn_ok_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnBorrar" to="." method="_on_btn_borrar_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

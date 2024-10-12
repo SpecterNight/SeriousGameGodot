@@ -12,6 +12,7 @@ var btnError: Button
 var isRecorded: bool = false
 var attemps: int = 0
 var isRecording: bool = false
+var timer_seconds: int = 0
 
 var STT
 
@@ -23,7 +24,8 @@ func _ready():
 		STT.setLanguage("es_US")
 		STT.error.connect(_on_error)
 		STT.listening_completed.connect(_on_listening_completed)
-	get_avatar()	
+	get_avatar()
+	$Timer.start()	
 
 func _process(delta):
 	pass
@@ -98,6 +100,7 @@ func compareTranscript():
 	if(attemps == 5):
 		print("cancela")
 		isRecorded = true
+		$Timer.stop()
 	attemps += 1
 	variables.add_decision(decision)
 
@@ -119,10 +122,9 @@ func _on_error(errorcode):
 	print("Error",errorcode)
 
 func _on_listening_completed(args):
-	print("llega")
 	var transcript = container_dialogue.get_node("Transcript")
-	print(args)
 	transcript.text = str(args)
 
-func save_decision(decision):
-	pass
+
+func _on_timer_timeout():
+	timer_seconds += 1# Replace with function body.

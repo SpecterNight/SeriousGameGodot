@@ -4,6 +4,7 @@ var is_response_processed: bool = false
 var is_result_uploaded: bool = false
 var variables: Node
 var tale_data: Dictionary
+
 const dialogue_component = preload("res://components/Dialogue.tscn")
 const decision_component = preload("res://components/Decision.tscn")
 
@@ -72,5 +73,5 @@ func _on_upload_result_request_completed(result, response_code, headers, body):
 	if(is_result_uploaded):
 		return
 	is_result_uploaded = true
-	print(result)
-	print(response_code)
+	get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
+

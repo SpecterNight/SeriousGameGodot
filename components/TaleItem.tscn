@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cssarhqemg1u7"]
+
+[ext_resource type="Script" path="res://scripts/TaleItem.gd" id="1_4xedn"]
+[ext_resource type="Texture2D" uid="uid://dlsjp5dghsnrg" path="res://images/iconBook.jpg" id="1_oitux"]
+
+[node name="Background" type="PanelContainer"]
+offset_right = 406.0
+offset_bottom = 205.0
+script = ExtResource("1_4xedn")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "titulo"
+
+[node name="Description" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="ContainerPlay" type="HBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ContainerPlay"]
+layout_mode = 2
+texture = ExtResource("1_oitux")
+expand_mode = 2
+
+[node name="BtnPlay" type="Button" parent="HBoxContainer/ContainerPlay"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Jugar"
+
+[node name="BtnRes" type="Button" parent="HBoxContainer/ContainerPlay"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Resultados"
+
+[connection signal="pressed" from="HBoxContainer/ContainerPlay/BtnPlay" to="." method="_on_btn_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/ContainerPlay/BtnRes" to="." method="_on_btn_res_pressed"]

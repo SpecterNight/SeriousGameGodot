@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsytgvew077qs"]
+
+[ext_resource type="Script" path="res://scripts/ResultItem.gd" id="1_nhx52"]
+
+[node name="ResultItem" type="PanelContainer"]
+offset_right = 406.0
+offset_bottom = 170.0
+size_flags_horizontal = 3
+script = ExtResource("1_nhx52")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Date" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "25
+"

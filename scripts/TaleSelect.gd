@@ -4,6 +4,8 @@ var tales: Array
 var variables: Node
 var is_response_processed: bool = false
 
+const tale_component = preload("res://components/TaleItem.tscn")
+
 func _ready():
 	variables = get_node("/root/Variables")
 	get_tales()
@@ -27,25 +29,6 @@ func render_tales():
 	var tales_container = $ScrollContainer/Tales
 
 	for tale in tales:
-		var panel = Button.new()
-		var tale_vbox = VBoxContainer.new()
-		panel.name = tale["externalId"]
-		var name_tale = Label.new()
-		var desc_tale = Label.new()
-
-		panel.custom_minimum_size = Vector2(200, 100)
-		name_tale.text = tale["name"]
-		name_tale.add_theme_font_size_override("normal", 45)
-		desc_tale.text = tale["description"]
-		tale_vbox.add_child(name_tale)
-		tale_vbox.add_child(desc_tale)
-		panel.connect("pressed", Callable(self, "_on_panel_pressed").bind(tale["externalId"]))
-		panel.add_child(tale_vbox)
-		tales_container.add_child(panel)
-
-func _on_panel_pressed(tale_id):
-	to_scene_activities(tale_id)
-
-func to_scene_activities(tale_id):
-	variables.tale_id = tale_id
-	get_tree().change_scene_to_file("res://scenes/Tale.tscn")
+		var tale_comp = tale_component.instantiate()
+		tale_comp.set_data(tale["name"], tale["description"], tale["externalId"])
+		tales_container.add_child(tale_comp)
