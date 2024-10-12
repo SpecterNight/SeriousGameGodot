@@ -67,6 +67,7 @@ func get_avatar():
 	http_request.request(variables.URL_Back + "/avatar/id/" + avatar_name, ["Cookie:token=" + variables.cookie])
 
 func compareTranscript():
+	attemps += 1
 	var decision = {
 		"text":"",
 		"error":"",
@@ -77,17 +78,25 @@ func compareTranscript():
 	var consequence = ""
 	print("Transcribe ",transcript)
 	decision["text"] = decision1["text"] + " o " + decision2["text"]
-	if(transcript == decision1["text"].to_lower()):
+	
+	var transcript_words = transcript.split(" ")
+	var decision1_words = decision1["text"].to_lower().split(" ")
+	var decision2_words = decision2["text"].to_lower().split(" ")
+	
+	var result = compare_words(transcript_words, decision1_words)
+	
+	if result ["match"]:
 		consequence = decision1["consequence"]
 		isRecorded = true
-	elif (transcript == decision2["text"].to_lower()):
-		consequence = decision2["consquence"]
-		isRecorded = true
 	else:
-		consequence = "ERROR"
-		decision["error"] = transcript
+		result = compare_words(transcript_words, decision2_words)
+		if result["match"]:
+			consequence = decision2["consequence"]
+			isRecorded = true
+		else:
+			consequence = "ERROR"
+			decision["error"] = result["errors"]
 		
-	consequence = decision1["consequence"]	
 	if(consequence != "ERROR"):
 		var conseq = Label.new()
 		conseq.text = consequence
@@ -96,15 +105,26 @@ func compareTranscript():
 		container_dialogue.add_child(conseq)
 		isRecorded = true
 		
-	print(attemps)
-	if(attemps == 5):
-		print("cancela")
-		isRecorded = true
-		$Timer.stop()
-	attemps += 1
+	$Timer.stop()
+	decision["duration"] = timer_seconds
+	timer_seconds = 0
+	container_dialogue.get_node("Transcript").text = ""
 	variables.add_decision(decision)
+	if(!isRecorded):
+		$Timer.start()
+	if(attemps == 5):
+		isRecorded = true
 
-func _on_btn_borrar_pressed() -> void:
+func compare_words(transcript_words, decision_words):
+	if transcript_words.size() < decision_words.size():
+		return {"match": false, "errors": decision_words}
+	var errors = ""
+	for i in range(decision_words.size()):
+		if transcript_words[i] != decision_words[i]:
+			errors += transcript_words[i] + " "
+	return {"match": errors.strip_edges() == "", "errors": errors.strip_edges()}
+	
+func _on_btn_grabar_pressed() -> void:
 	if !isRecording:
 		STT.listen()
 		btnError.text = "Parar"
@@ -116,7 +136,8 @@ func _on_btn_borrar_pressed() -> void:
 
 
 func _on_btn_ok_pressed() -> void:
-	compareTranscript()
+	if container_dialogue.get_node("Transcript").text != "":
+		compareTranscript()
 
 func _on_error(errorcode):
 	print("Error",errorcode)
@@ -128,3 +149,4 @@ func _on_listening_completed(args):
 
 func _on_timer_timeout():
 	timer_seconds += 1# Replace with function body.
+
