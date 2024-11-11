@@ -8,11 +8,10 @@ var avatar_name: String
 var decision1
 var decision2
 var btnOk: Button
-var btnError: Button
+var btnGrabar: Button
 var isRecorded: bool = false
 var attemps: int = 0
 var isRecording: bool = false
-var timer_seconds: int = 0
 
 var STT
 
@@ -25,7 +24,6 @@ func _ready():
 		STT.error.connect(_on_error)
 		STT.listening_completed.connect(_on_listening_completed)
 	get_avatar()
-	$Timer.start()	
 
 func _process(delta):
 	pass
@@ -44,7 +42,7 @@ func set_data(chr_name: String, character: String, dialogue, nextDialogue):
 func get_nodes():
 	container_dialogue = get_node("VBoxContainer")
 	btnOk = container_dialogue.get_node("BtnOk")
-	btnError = container_dialogue.get_node("BtnBorrar")
+	btnGrabar = container_dialogue.get_node("BtnGrabar")
 
 func _on_http_request_request_completed(result, response_code, headers, body):
 	if is_response_processed:
@@ -70,14 +68,16 @@ func compareTranscript():
 	attemps += 1
 	var decision = {
 		"text":"",
-		"error":"",
-		"duration":0,
+		"textAlternative":"",
+		"userText":"",
+		"lettersOmmited": [],
 		"consequence":""
 	}
 	var transcript = container_dialogue.get_node("Transcript").text.to_lower()
 	var consequence = ""
 	print("Transcribe ",transcript)
-	decision["text"] = decision1["text"] + " o " + decision2["text"]
+	decision["text"] = decision1["text"]
+	decision["textAlternative"] = decision2["text"]
 	
 	var transcript_words = transcript.split(" ")
 	var decision1_words = decision1["text"].to_lower().split(" ")
@@ -105,13 +105,9 @@ func compareTranscript():
 		container_dialogue.add_child(conseq)
 		isRecorded = true
 		
-	$Timer.stop()
-	decision["duration"] = timer_seconds
-	timer_seconds = 0
 	container_dialogue.get_node("Transcript").text = ""
 	variables.add_decision(decision)
-	if(!isRecorded):
-		$Timer.start()
+	
 	if(attemps == 5):
 		isRecorded = true
 
@@ -127,10 +123,10 @@ func compare_words(transcript_words, decision_words):
 func _on_btn_grabar_pressed() -> void:
 	if !isRecording:
 		STT.listen()
-		btnError.text = "Parar"
+		btnGrabar.text = "Parar"
 		isRecording = !isRecording
 	else:
-		btnError.text = "Grabar"
+		btnGrabar.text = "Grabar"
 		STT.stop()
 		isRecording = !isRecording
 
@@ -145,8 +141,4 @@ func _on_error(errorcode):
 func _on_listening_completed(args):
 	var transcript = container_dialogue.get_node("Transcript")
 	transcript.text = str(args)
-
-
-func _on_timer_timeout():
-	timer_seconds += 1# Replace with function body.
 

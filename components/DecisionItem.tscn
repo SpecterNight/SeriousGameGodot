@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8jfhgr12xjsp"]
 
-[ext_resource type="Script" path="res://scripts/DecisionItem.gd" id="1_lqgjx"]
+[ext_resource type="Script" path="res://scripts/DecisionItem.gd" id="1_vbxg2"]
 
 [node name="DecisionItem" type="PanelContainer"]
 offset_right = 276.0
 offset_bottom = 130.0
-script = ExtResource("1_lqgjx")
+script = ExtResource("1_vbxg2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
