@@ -13,6 +13,9 @@ var isRecorded: bool = false
 var attemps: int = 0
 var isRecording: bool = false
 
+var decisionSelected: Object
+var alternativeDecsion: Object
+
 var STT
 
 func _ready():
@@ -66,60 +69,63 @@ func get_avatar():
 
 func compareTranscript():
 	attemps += 1
-	var decision = {
-		"text":"",
-		"textAlternative":"",
-		"userText":"",
-		"lettersOmmited": [],
-		"consequence":""
-	}
-	var transcript = container_dialogue.get_node("Transcript").text.to_lower()
-	var consequence = ""
-	print("Transcribe ",transcript)
-	decision["text"] = decision1["text"]
-	decision["textAlternative"] = decision2["text"]
-	
-	var transcript_words = transcript.split(" ")
-	var decision1_words = decision1["text"].to_lower().split(" ")
-	var decision2_words = decision2["text"].to_lower().split(" ")
-	
-	var result = compare_words(transcript_words, decision1_words)
-	
-	if result ["match"]:
-		consequence = decision1["consequence"]
-		isRecorded = true
-	else:
-		result = compare_words(transcript_words, decision2_words)
-		if result["match"]:
-			consequence = decision2["consequence"]
-			isRecorded = true
-		else:
-			consequence = "ERROR"
-			decision["error"] = result["errors"]
-		
-	if(consequence != "ERROR"):
-		var conseq = Label.new()
-		conseq.text = consequence
-		decision["consequence"] = consequence	
-		conseq.add_theme_font_size_override("font_size",35)
-		container_dialogue.add_child(conseq)
-		isRecorded = true
-		
-	container_dialogue.get_node("Transcript").text = ""
-	variables.add_decision(decision)
-	
-	if(attemps == 5):
-		isRecorded = true
 
-func compare_words(transcript_words, decision_words):
-	if transcript_words.size() < decision_words.size():
-		return {"match": false, "errors": decision_words}
-	var errors = ""
-	for i in range(decision_words.size()):
-		if transcript_words[i] != decision_words[i]:
-			errors += transcript_words[i] + " "
-	return {"match": errors.strip_edges() == "", "errors": errors.strip_edges()}
+	var phrase_words = decisionSelected.text.to_lower().split(" ")
+	var user_words = container_dialogue.get_node("Transcript").text.to_lower().split(" ")
+
+	var letters_omitted = []
+	var other_error = "Ninguno"
+
+	var similarity_percentage = calculate_similarity(phrase_words, user_words)
+
+	if similarity_percentage < 30:
+		other_error = "Error en la frase completa: las frases no son similares"
+	else:
+		for i in range(phrase_words.size()):
+			var word = phrase_words[i]
+			var user_word = user_words[i] if i < user_words.size() else ""
+
+			if user_word != word:
+				if(has_omissions(word, user_word)):
+					letters_omitted.append(word)
+				else:
+					other_error = "Hay un error que no es una omisión de letras"
+
+	var decision = {
+		"text":decisionSelected.text,
+		"textAlternative": alternativeDecsion.text,
+		"userText":container_dialogue.get_node("Transcript"),
+		"lettersOmmited": letters_omitted,
+		"consequence":decisionSelected.consequence,
+		"otherError": other_error
+	}
+	variables.add_decision(decision)
+	if(attemps == 5 || letters_omitted.size()==0):
+		isRecorded = true
 	
+
+func calculate_similarity(text_words: Array, user_words:Array) -> float:
+	var match_count = 0
+
+	for word in text_words:
+		if user_words.has(word):
+			match_count += 1
+	return (float(match_count) / text_words.size()) * 100
+
+func has_omissions(correct_word:String, user_word:String)->bool:
+	if user_word.length() >= correct_word.length():
+		return false
+	
+	var i = 0
+	var j = 0
+
+	while i < correct_word.length() and j < user_word.length():
+		if correct_word[i] == user_word[j]:
+			j += 1
+		i += 1
+	return j == user_word.length()
+
+
 func _on_btn_grabar_pressed() -> void:
 	if !isRecording:
 		STT.listen()
