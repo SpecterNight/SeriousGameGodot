@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlsjp5dghsnrg"
-path="res://.godot/imported/iconBook.jpg-bf6e52fc66c87f6d2930da0ab1d5ee77.ctex"
+uid="uid://b8fs8vixb8kbv"
+path="res://.godot/imported/background.png-1fdba8b6a966ce2c2ffc607f7c096e95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/iconBook.jpg"
-dest_files=["res://.godot/imported/iconBook.jpg-bf6e52fc66c87f6d2930da0ab1d5ee77.ctex"]
+source_file="res://assets/background.png"
+dest_files=["res://.godot/imported/background.png-1fdba8b6a966ce2c2ffc607f7c096e95.ctex"]
 
 [params]
 

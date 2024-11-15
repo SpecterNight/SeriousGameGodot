@@ -12,7 +12,7 @@ func _process(delta):
 
 func set_data(decision):
 	print(decision)
-	$VBoxContainer/Duration.text = str(decision["duration"])
+	$VBoxContainer/LettersOmited.text =  " ".join(decision["lettersOmmited"])
 	$VBoxContainer/Consequence.text = decision["consequence"]
-	$VBoxContainer/Error.text = decision["error"]
+	$VBoxContainer/UserText.text = decision["userText"]
 	$VBoxContainer/Text.text = decision["text"]

@@ -19,10 +19,12 @@ func _on_login_req_request_completed(result, response_code, headers, body):
 	is_response_processed = true
 
 	var cookie = headers[4]
+	
 	var pattern = "token=([^;]+)"
 	var regex = RegEx.new()
 	regex.compile(pattern)
 	var match = regex.search(cookie)
+	
 	if match:
 		var token = match.get_string(1)
 		variables.cookie = token

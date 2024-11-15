@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var is_response_processed: bool = false
 var is_result_uploaded: bool = false

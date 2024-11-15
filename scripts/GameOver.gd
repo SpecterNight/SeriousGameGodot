@@ -24,6 +24,6 @@ func cont_errors() -> int:
 	var decisions = variables.result["decisions"]
 	var errors = 0
 	for decision in decisions:
-		if(decision["error"] && decision["error"]!=""):
+		if(decision["lettersOmmited"].size()>0):
 			errors += 1
 	return errors

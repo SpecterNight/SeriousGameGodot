@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkerhocggy3uo"]
+[gd_scene load_steps=5 format=3 uid="uid://bkerhocggy3uo"]
 
 [ext_resource type="Script" path="res://scripts/TaleSelect.gd" id="1_d2vpi"]
+[ext_resource type="Texture2D" uid="uid://d08ce57s1pjt" path="res://assets/woodTexture.png" id="2_3k56i"]
+[ext_resource type="Theme" uid="uid://vhiqa4vo0evm" path="res://themes/titleTheme.tres" id="2_12tys"]
+[ext_resource type="Theme" uid="uid://dfb6u5rqrhn66" path="res://themes/scrollContainer.tres" id="4_8nd5y"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -11,16 +14,28 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d2vpi")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3k56i")
+
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 2
-offset_left = 33.0
-offset_top = 90.0
-offset_right = 686.0
-offset_bottom = 156.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -292.0
+offset_top = 89.0
+offset_right = 295.0
+offset_bottom = 148.0
 grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("2_12tys")
 theme_override_font_sizes/font_size = 45
 text = "Cuentos disponibles"
 horizontal_alignment = 1
@@ -38,6 +53,7 @@ offset_right = 308.0
 offset_bottom = 526.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_8nd5y")
 horizontal_scroll_mode = 0
 
 [node name="Tales" type="VBoxContainer" parent="ScrollContainer"]

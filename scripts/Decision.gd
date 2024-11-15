@@ -13,8 +13,11 @@ var isRecorded: bool = false
 var attemps: int = 0
 var isRecording: bool = false
 
-var decisionSelected: Object
-var alternativeDecsion: Object
+var decision1Object
+var decision2Object
+
+var decisionSelected
+var alternativeDecision
 
 var STT
 
@@ -41,6 +44,9 @@ func set_data(chr_name: String, character: String, dialogue, nextDialogue):
 	decision2 = nextDialogue
 	decision1L.text = dialogue["text"]
 	decision2L.text = nextDialogue["text"]
+	decision1Object = dialogue
+	decision2Object = nextDialogue
+	print(decision1Object, decision2Object)
 
 func get_nodes():
 	container_dialogue = get_node("VBoxContainer")
@@ -70,7 +76,7 @@ func get_avatar():
 func compareTranscript():
 	attemps += 1
 
-	var phrase_words = decisionSelected.text.to_lower().split(" ")
+	var phrase_words = decisionSelected["text"].to_lower().split(" ")
 	var user_words = container_dialogue.get_node("Transcript").text.to_lower().split(" ")
 
 	var letters_omitted = []
@@ -92,11 +98,11 @@ func compareTranscript():
 					other_error = "Hay un error que no es una omisión de letras"
 
 	var decision = {
-		"text":decisionSelected.text,
-		"textAlternative": alternativeDecsion.text,
+		"text":decisionSelected["text"],
+		"textAlternative": alternativeDecision["text"],
 		"userText":container_dialogue.get_node("Transcript"),
 		"lettersOmmited": letters_omitted,
-		"consequence":decisionSelected.consequence,
+		"consequence":decisionSelected["consequence"],
 		"otherError": other_error
 	}
 	variables.add_decision(decision)
@@ -127,14 +133,15 @@ func has_omissions(correct_word:String, user_word:String)->bool:
 
 
 func _on_btn_grabar_pressed() -> void:
-	if !isRecording:
-		STT.listen()
-		btnGrabar.text = "Parar"
-		isRecording = !isRecording
-	else:
-		btnGrabar.text = "Grabar"
-		STT.stop()
-		isRecording = !isRecording
+	if decisionSelected!=null:
+		if !isRecording:
+			STT.listen()
+			btnGrabar.text = "Parar"
+			isRecording = !isRecording
+		else:
+			btnGrabar.text = "Grabar"
+			STT.stop()
+			isRecording = !isRecording
 
 
 func _on_btn_ok_pressed() -> void:
@@ -148,3 +155,11 @@ func _on_listening_completed(args):
 	var transcript = container_dialogue.get_node("Transcript")
 	transcript.text = str(args)
 
+func _on_decision_1_pressed():
+	decisionSelected = decision1Object
+	alternativeDecision = decision2Object
+
+
+func _on_decision_2_pressed():
+	decisionSelected = decision2Object
+	alternativeDecision =decision1Object

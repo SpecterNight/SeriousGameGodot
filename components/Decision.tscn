@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dll48qfqiyc5u"]
+[gd_scene load_steps=6 format=3 uid="uid://dll48qfqiyc5u"]
 
+[ext_resource type="Theme" uid="uid://b840j3o8qmhs5" path="res://themes/panelContainer.tres" id="1_ay3y7"]
 [ext_resource type="Script" path="res://scripts/Decision.gd" id="1_hpja7"]
+[ext_resource type="Theme" uid="uid://b0vna5pvkaogc" path="res://themes/labelTheme.tres" id="3_4ytav"]
+[ext_resource type="Theme" uid="uid://03uyyc4o7nde" path="res://themes/btnNormal.tres" id="4_7dvpg"]
+[ext_resource type="Theme" uid="uid://dcf41yh6pp0il" path="res://themes/btnDecision.tres" id="4_xujju"]
 
 [node name="Background" type="PanelContainer"]
-offset_right = 530.0
-offset_bottom = 546.0
+offset_right = 502.0
+offset_bottom = 530.0
+theme = ExtResource("1_ay3y7")
 script = ExtResource("1_hpja7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -13,40 +18,50 @@ layout_mode = 2
 
 [node name="CharacterName" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_4ytav")
+theme_override_colors/font_color = Color(0.129412, 0.129412, 0.129412, 1)
 theme_override_font_sizes/font_size = 30
 
 [node name="Character" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_vertical = 3
-stretch_mode = 4
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
-[node name="Decision1" type="Label" parent="VBoxContainer"]
+[node name="Decision1" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 1
+theme = ExtResource("4_xujju")
 theme_override_font_sizes/font_size = 35
+alignment = 0
 
-[node name="Decision2" type="Label" parent="VBoxContainer"]
+[node name="Decision2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 1
+theme = ExtResource("4_xujju")
 theme_override_font_sizes/font_size = 35
+alignment = 0
 
 [node name="BtnOk" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_7dvpg")
 theme_override_font_sizes/font_size = 35
 text = "Aceptar
 "
 
 [node name="BtnGrabar" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_7dvpg")
 theme_override_font_sizes/font_size = 35
 text = "Grabar"
 
 [node name="Transcript" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_4ytav")
 theme_override_font_sizes/font_size = 35
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[connection signal="pressed" from="VBoxContainer/Decision1" to="." method="_on_decision_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/Decision2" to="." method="_on_decision_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnOk" to="." method="_on_btn_ok_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnGrabar" to="." method="_on_btn_grabar_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cssarhqemg1u7"]
+[gd_scene load_steps=6 format=3 uid="uid://cssarhqemg1u7"]
 
 [ext_resource type="Script" path="res://scripts/TaleItem.gd" id="1_4xedn"]
-[ext_resource type="Texture2D" uid="uid://dlsjp5dghsnrg" path="res://images/iconBook.jpg" id="1_oitux"]
+[ext_resource type="Theme" uid="uid://b840j3o8qmhs5" path="res://themes/panelContainer.tres" id="1_60v7o"]
+[ext_resource type="Theme" uid="uid://b0vna5pvkaogc" path="res://themes/labelTheme.tres" id="2_aqegr"]
+[ext_resource type="Theme" uid="uid://03uyyc4o7nde" path="res://themes/btnNormal.tres" id="3_wi6s0"]
+[ext_resource type="Texture2D" uid="uid://cpvauplb2qnls" path="res://assets/iconBook.png" id="4_a6b0w"]
 
 [node name="Background" type="PanelContainer"]
 offset_right = 406.0
 offset_bottom = 205.0
+theme = ExtResource("1_60v7o")
 script = ExtResource("1_4xedn")
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
@@ -13,11 +17,17 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_aqegr")
+theme_override_colors/font_color = Color(0.129412, 0.129412, 0.129412, 1)
 theme_override_font_sizes/font_size = 35
 text = "titulo"
 
 [node name="Description" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_aqegr")
+theme_override_colors/font_color = Color(0.129412, 0.129412, 0.129412, 1)
+theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
 
 [node name="ContainerPlay" type="HBoxContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -25,18 +35,20 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/ContainerPlay"]
 layout_mode = 2
-texture = ExtResource("1_oitux")
+texture = ExtResource("4_a6b0w")
 expand_mode = 2
 
 [node name="BtnPlay" type="Button" parent="HBoxContainer/ContainerPlay"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme = ExtResource("3_wi6s0")
 theme_override_font_sizes/font_size = 30
 text = "Jugar"
 
 [node name="BtnRes" type="Button" parent="HBoxContainer/ContainerPlay"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme = ExtResource("3_wi6s0")
 theme_override_font_sizes/font_size = 30
 text = "Resultados"
 

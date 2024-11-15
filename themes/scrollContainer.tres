@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dfb6u5rqrhn66"]
+
+[ext_resource type="Texture2D" uid="uid://cw4a7e3cfmnvq" path="res://assets/panelBackStone.png" id="1_glp4i"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k2aws"]
+content_margin_left = 20.0
+content_margin_top = 50.0
+content_margin_right = 20.0
+content_margin_bottom = 50.0
+texture = ExtResource("1_glp4i")
+
+[resource]
+ScrollContainer/styles/panel = SubResource("StyleBoxTexture_k2aws")

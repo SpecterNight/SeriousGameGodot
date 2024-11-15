@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b840j3o8qmhs5"]
+
+[ext_resource type="Texture2D" uid="uid://2xcnbjrqglyv" path="res://assets/panelBack.png" id="1_wcpft"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jacsy"]
+content_margin_left = 25.0
+content_margin_top = 20.0
+content_margin_right = 55.0
+content_margin_bottom = 30.0
+texture = ExtResource("1_wcpft")
+
+[resource]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_jacsy")
