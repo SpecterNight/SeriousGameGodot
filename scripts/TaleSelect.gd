@@ -32,3 +32,7 @@ func render_tales():
 		var tale_comp = tale_component.instantiate()
 		tale_comp.set_data(tale["name"], tale["description"], tale["externalId"])
 		tales_container.add_child(tale_comp)
+
+
+func _on_btn_back_pressed():
+	get_tree().change_scene_to_file("res://scenes/Menu.tscn")

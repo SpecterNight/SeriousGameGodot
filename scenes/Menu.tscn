@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcdeagnpvvi3r"]
+
+[ext_resource type="Script" path="res://scripts/Menu.gd" id="1_61ihl"]
+[ext_resource type="Texture2D" uid="uid://d08ce57s1pjt" path="res://assets/woodTexture.png" id="1_h4g8k"]
+[ext_resource type="Theme" uid="uid://vhiqa4vo0evm" path="res://themes/titleTheme.tres" id="2_vtpve"]
+[ext_resource type="Theme" uid="uid://03uyyc4o7nde" path="res://themes/btnNormal.tres" id="3_r4223"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_61ihl")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h4g8k")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -285.0
+offset_top = 54.0
+offset_right = 282.0
+offset_bottom = 113.0
+grow_horizontal = 2
+theme = ExtResource("2_vtpve")
+theme_override_font_sizes/font_size = 45
+text = "Menú"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.0
+offset_top = -500.0
+offset_right = 308.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="btn_tale" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_r4223")
+theme_override_font_sizes/font_size = 30
+text = "Cuentos"
+
+[node name="btn_minigame" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_r4223")
+theme_override_font_sizes/font_size = 30
+text = "Minijuego"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/btn_tale" to="." method="_on_btn_tale_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/btn_minigame" to="." method="_on_btn_minigame_pressed"]

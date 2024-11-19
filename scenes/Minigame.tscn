@@ -1,0 +1,207 @@
+[gd_scene load_steps=7 format=3 uid="uid://bapbsmw8jekbt"]
+
+[ext_resource type="Script" path="res://scripts/Minigame.gd" id="1_hp7yf"]
+[ext_resource type="Texture2D" uid="uid://d08ce57s1pjt" path="res://assets/woodTexture.png" id="2_vuxgp"]
+[ext_resource type="Theme" uid="uid://vhiqa4vo0evm" path="res://themes/titleTheme.tres" id="3_4v5r5"]
+[ext_resource type="Theme" uid="uid://03uyyc4o7nde" path="res://themes/btnNormal.tres" id="4_1xkvx"]
+[ext_resource type="Theme" uid="uid://b0vna5pvkaogc" path="res://themes/labelTheme.tres" id="5_lgu0c"]
+[ext_resource type="Theme" uid="uid://be184mcn2ipum" path="res://themes/inputTheme.tres" id="6_ogfkw"]
+
+[node name="Minigame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hp7yf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vuxgp")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -313.0
+offset_top = 131.0
+offset_right = 274.0
+offset_bottom = 190.0
+grow_horizontal = 2
+theme = ExtResource("3_4v5r5")
+theme_override_font_sizes/font_size = 45
+text = "Completa la palabra"
+horizontal_alignment = 1
+
+[node name="btn_back" type="Button" parent="."]
+layout_mode = 1
+offset_left = 55.0
+offset_top = 45.0
+offset_right = 192.0
+offset_bottom = 100.0
+theme = ExtResource("4_1xkvx")
+theme_override_font_sizes/font_size = 30
+text = "Atras"
+
+[node name="Container_game" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = -406.0
+offset_right = 316.0
+offset_bottom = 518.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="header_area" type="VBoxContainer" parent="Container_game"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container_game/header_area"]
+layout_mode = 2
+theme = ExtResource("5_lgu0c")
+theme_override_font_sizes/font_size = 30
+text = "Ingrese la cantidad de palabras"
+
+[node name="max_words" type="Label" parent="Container_game/header_area"]
+layout_mode = 2
+theme = ExtResource("5_lgu0c")
+theme_override_font_sizes/font_size = 30
+
+[node name="number_words" type="LineEdit" parent="Container_game/header_area"]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_ogfkw")
+theme_override_font_sizes/font_size = 30
+virtual_keyboard_type = 2
+
+[node name="btn_start" type="Button" parent="Container_game/header_area"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_1xkvx")
+theme_override_font_sizes/font_size = 30
+text = "Comenzar"
+
+[node name="game_area" type="VBoxContainer" parent="Container_game"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="header_ok" type="HBoxContainer" parent="Container_game/game_area"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container_game/game_area/header_ok"]
+layout_mode = 2
+theme = ExtResource("5_lgu0c")
+theme_override_font_sizes/font_size = 30
+text = "Aciertos:"
+
+[node name="number_ok" type="Label" parent="Container_game/game_area/header_ok"]
+layout_mode = 2
+theme = ExtResource("5_lgu0c")
+theme_override_font_sizes/font_size = 30
+
+[node name="header_error" type="HBoxContainer" parent="Container_game/game_area"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container_game/game_area/header_error"]
+layout_mode = 2
+theme = ExtResource("5_lgu0c")
+theme_override_font_sizes/font_size = 30
+text = "Errores:"
+
+[node name="number_error" type="Label" parent="Container_game/game_area/header_error"]
+layout_mode = 2
+theme = ExtResource("5_lgu0c")
+theme_override_font_sizes/font_size = 30
+
+[node name="word" type="GridContainer" parent="Container_game/game_area"]
+layout_mode = 2
+columns = 6
+
+[node name="vowels" type="HBoxContainer" parent="Container_game/game_area"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="vowel_a" type="Button" parent="Container_game/game_area/vowels"]
+layout_mode = 2
+theme = ExtResource("4_1xkvx")
+theme_override_font_sizes/font_size = 30
+text = "A"
+
+[node name="vowel_e" type="Button" parent="Container_game/game_area/vowels"]
+layout_mode = 2
+theme = ExtResource("4_1xkvx")
+theme_override_font_sizes/font_size = 30
+text = "e
+"
+
+[node name="vowel_i" type="Button" parent="Container_game/game_area/vowels"]
+layout_mode = 2
+theme = ExtResource("4_1xkvx")
+theme_override_font_sizes/font_size = 30
+text = "I
+"
+
+[node name="vowel_o" type="Button" parent="Container_game/game_area/vowels"]
+layout_mode = 2
+theme = ExtResource("4_1xkvx")
+theme_override_font_sizes/font_size = 30
+text = "O
+"
+
+[node name="vowel_u" type="Button" parent="Container_game/game_area/vowels"]
+layout_mode = 2
+theme = ExtResource("4_1xkvx")
+theme_override_font_sizes/font_size = 30
+text = "U
+"
+
+[node name="vowel_delete" type="Button" parent="Container_game/game_area/vowels"]
+layout_mode = 2
+theme = ExtResource("4_1xkvx")
+theme_override_font_sizes/font_size = 30
+text = "Borrar
+"
+
+[node name="game_over" type="VBoxContainer" parent="Container_game"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container_game/game_over"]
+layout_mode = 2
+theme = ExtResource("5_lgu0c")
+theme_override_font_sizes/font_size = 30
+text = "Felicidades, fin de la partida"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_gameover" type="Button" parent="Container_game/game_over"]
+layout_mode = 2
+theme = ExtResource("4_1xkvx")
+theme_override_font_sizes/font_size = 30
+text = "Jugar de nuevo"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="btn_back" to="." method="_on_btn_back_pressed"]
+[connection signal="pressed" from="Container_game/header_area/btn_start" to="." method="_on_btn_start_pressed"]
+[connection signal="pressed" from="Container_game/game_area/vowels/vowel_a" to="." method="_on_vowel_pressed" binds= ["A"]]
+[connection signal="pressed" from="Container_game/game_area/vowels/vowel_e" to="." method="_on_vowel_pressed" binds= ["E"]]
+[connection signal="pressed" from="Container_game/game_area/vowels/vowel_i" to="." method="_on_vowel_pressed" binds= ["I"]]
+[connection signal="pressed" from="Container_game/game_area/vowels/vowel_o" to="." method="_on_vowel_pressed" binds= ["O"]]
+[connection signal="pressed" from="Container_game/game_area/vowels/vowel_u" to="." method="_on_vowel_pressed" binds= ["U"]]
+[connection signal="pressed" from="Container_game/game_area/vowels/vowel_delete" to="." method="_on_vowel_delete_pressed"]
+[connection signal="pressed" from="Container_game/game_over/btn_gameover" to="." method="_on_btn_gameover_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

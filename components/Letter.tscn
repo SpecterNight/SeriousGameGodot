@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ykucj3kua1o"]
+
+[ext_resource type="Theme" uid="uid://b840j3o8qmhs5" path="res://themes/panelContainer.tres" id="1_gxv6l"]
+[ext_resource type="Script" path="res://components/Letter.gd" id="2_1gbks"]
+[ext_resource type="Theme" uid="uid://b0vna5pvkaogc" path="res://themes/labelTheme.tres" id="2_fpov2"]
+
+[node name="Letter" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gxv6l")
+script = ExtResource("2_1gbks")
+
+[node name="vowel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_fpov2")
+theme_override_colors/font_color = Color(0.129412, 0.129412, 0.129412, 1)
+theme_override_font_sizes/font_size = 30
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

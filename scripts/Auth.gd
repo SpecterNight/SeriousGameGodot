@@ -33,7 +33,7 @@ func _on_login_req_request_completed(result, response_code, headers, body):
 		var account = JSON.parse_string(json_string)
 		print(account)
 		if "role" in account:
-			get_tree().change_scene_to_file("res://scenes/TaleSelect.tscn")
+			get_tree().change_scene_to_file("res://scenes/Menu.tscn")
 
 func convert_base64(base64: String) -> String:
 	var mod = base64.length() % 4
